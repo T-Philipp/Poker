@@ -1,0 +1,36 @@
+<!doctype html>
+<html ng-app="poker" lang="de">
+<head>
+	<meta charset="utf-8">
+	<meta name="author" content="Philipp Tavra">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Poker</title>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/ng/angular.js"></script>
+	<script src="js/ng/angular-animate.min.js"></script>
+	<script src="js/ng/angular-route.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/angular.rangeSlider.js"></script>
+	<script src="js/poker/app.js"></script>
+	<script src="js/poker/controllers.js"></script>
+	<script src="js/poker/services.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/angular.rangeSlider.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div ng-view class="dpageani"></div>
+
+<nav ng-init="act='hands'">
+	<a href="#/hands"><div ng-class="{act: act=='hands'}" ng-click="act='hands'">
+		<h4>Kartenwertungen</h4>
+	</div></a>
+	<a href="#/blinds"><div ng-class="{act: act=='blinds'}" ng-click="act='blinds'">
+		<h4>Blind-Watcher</h4></div>
+	</a>
+</nav>
+
+</body>
+</html>

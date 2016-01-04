@@ -1,0 +1,93 @@
+@mixin transp-bg {
+  background: rgba(255, 255, 255, 0.1);
+  &.act {
+	background: rgba(255, 255, 255, 0.2);
+  }
+}
+
+@mixin shadow {
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 1);
+}
+
+@mixin transp-bg_btn {
+  @include transp-bg;
+  transition: all .5s;
+  &:hover {
+	background: rgba(255, 255, 255, 0.4);
+	color: #000;
+  }
+}
+
+@mixin shadow_btn {
+  @include shadow;
+  transition: all .5s;
+  &:hover {
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 1);
+  }
+}
+
+@import "animate";
+@import "ngAnim";
+
+body {
+  margin: 0 0 100px 0;
+  background-image: url('../img/bg.jpg');
+  &:after {
+	content: '';
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background-image: radial-gradient(
+					rgba(0, 0, 0, 0.3),
+					rgba(0, 0, 0, 0.7)
+	);
+	z-index: -1;
+  }
+}
+
+nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(0,0,0,1);
+  a {
+	flex-grow: 1;
+	&:link, &:visited {
+	  color: #fff;
+	  text-decoration: none;
+	}
+	div {
+	  @include transp-bg_btn;
+	  @include shadow_btn;
+	  padding: 20px 0;
+	  text-align: center;
+	  cursor: pointer;
+	  h4 {
+		margin-bottom: 0;
+	  }
+	}
+  }
+}
+
+#hands {
+  margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  div {
+	flex-grow: 1;
+	@include transp-bg;
+	@include shadow;
+	color: #fff;
+	margin: 20px 10px;
+	padding: 10px 20px;
+	img {
+	  display: block;
+	  margin: 0 auto -30px auto;
+	}
+  }
+}

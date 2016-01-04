@@ -1,0 +1,23 @@
+{{ config }}
+
+<br><br>
+
+<label for="dauer">Blidstufen-Dauer (min)</label>
+<input id="dauer" type="text" ng-model="config.dauer">
+<div range-slider min="dauer.min" max="dauer.max" step="{{ dauer.step }}" model-max="config.dauer" pin-handle="min"></div>
+
+<br><br>
+
+<label for="kleinste">Kleinste Chip-Stufe</label>
+<input id="kleinste" type="text" ng-model="config.kleinste">
+<div range-slider min="kleinste.min" max="kleinste.max" step="{{ kleinste.step }}" model-max="config.kleinste" pin-handle="min"></div>
+
+<br><br>
+
+<label for="multip">Erhöhungs-Multiplikator (%)</label>
+<input id="multip" type="text" ng-model="config.multip">
+<div range-slider min="multip.min" max="multip.max" step="{{ multip.step }}" model-max="config.multip" pin-handle="min"></div>
+
+<br><br>
+
+<button ng-click="save()">Speichern</button>
