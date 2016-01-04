@@ -1,20 +1,10 @@
-forever --watch server/server.js
-grunt watch
+# Servereinrichtung
+* nodeJS installieren
+* npm update -g
+* npm install socket.io -g
+* npm install
 
-
-
-http://www.interaktionsdesigner.de/2013/die-killerapplikation-mit-node.js-socket.io-und-angularjs/
-
-http://stackoverflow.com/questions/24346161/nodejs-connect-cannot-find-static
-
-
-
-
-
-nodeJS
-grunt
-ruby / sass
-angularJS
-connect
-serve-static
-forever
+# Starten
+* forever --watch srv/server.js
+oder
+* node srv/server.js
