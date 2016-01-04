@@ -2278,3 +2278,59 @@ nav {
     #hands div img {
       display: block;
       margin: 0 auto -30px auto; }
+
+#config {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 10px 0 black;
+  color: #fff;
+  margin: 20px;
+  padding: 30px 20px; }
+  #config.act {
+    background: rgba(255, 255, 255, 0.2); }
+  #config label {
+    font-size: 1.3em;
+    margin-left: 2em;
+    margin-bottom: 0; }
+  #config input {
+    display: none; }
+  #config div.ngrs-range-slider {
+    background-color: transparent;
+    border: none;
+    box-shadow: none; }
+    #config div.ngrs-range-slider .ngrs-runner {
+      height: 2em; }
+      #config div.ngrs-range-slider .ngrs-runner .ngrs-handle {
+        width: 30px; }
+      #config div.ngrs-range-slider .ngrs-runner .ngrs-join {
+        height: 1.5em;
+        top: 25%;
+        min-width: 70px;
+        transition: all .2s;
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 10px 0 black; }
+        #config div.ngrs-range-slider .ngrs-runner .ngrs-join.act {
+          background: rgba(255, 255, 255, 0.2); }
+    #config div.ngrs-range-slider .ngrs-value-max {
+      display: block !important;
+      right: inherit;
+      margin-top: -2em;
+      margin-left: 2em;
+      z-index: 1;
+      color: #fff;
+      font-size: 1.2em; }
+  #config button {
+    background: rgba(255, 255, 255, 0.1);
+    transition: all .5s;
+    box-shadow: 0 0 10px 0 black;
+    transition: all .5s;
+    display: block;
+    width: 100%;
+    border: 0;
+    font-size: 1.5em; }
+    #config button.act {
+      background: rgba(255, 255, 255, 0.2); }
+    #config button:hover {
+      background: rgba(255, 255, 255, 0.4);
+      color: #000; }
+    #config button:hover {
+      box-shadow: 0 0 20px 0 black; }

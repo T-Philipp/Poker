@@ -40,14 +40,14 @@ pokerControllers.controller('BlindsCtrl',
 			max: 30
 		};
 		$scope.kleinste = {
-			min: 25,
+			min: 5,
 			max: 100,
 			step: 5
 		};
 		$scope.multip = {
 			min: 50,
 			max: 200,
-			step: 50
+			step: 25
 		};
 
 		/**
