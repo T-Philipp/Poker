@@ -24,8 +24,8 @@ pokerControllers.controller('BlindsCtrl',
 		};
 
 		/**
-		 * Sendet an den Server via POST mit URL/Name '/config' config-JSON gesendet
-		 * Dieser Speichert den Wert in die JSON mit 'fs'
+		 * Sendet an den Server via POST mit URL/Name '/config' die config-JSON
+		 * Dieser speichert den Wert in die JSON mit 'nJS fs'
 		 * Anschließend wird dem Server gesagt, er soll alle Clients updaten - durch senden an Socket
 		 */
 		var setConfigJson = function () {
@@ -40,6 +40,9 @@ pokerControllers.controller('BlindsCtrl',
 		var getRundenrest = function () {
 			$http.get('/timer').success(function (data) {
 				$scope.restzeit = parseInt(data);
+
+				$scope.$broadcast('timer-set-countdown', $scope.restzeit);
+				$scope.$broadcast('timer-start');
 			});
 		};
 
@@ -51,9 +54,8 @@ pokerControllers.controller('BlindsCtrl',
 		});
 
 		/**
-		 * Bei Klick wird an den Server via POST mit URL/Name '/config' config-JSON gesendet
-		 * Dieser Speichert den Wert in die JSON mit 'fs'
-		 * Anschließend wird dem Server gesagt, er soll alle Clients updaten - durch senden an Socket
+		 * Bei Klick wwerdne Spieldaten berechnet und diese in die JSON geschrieben
+		 * Erste Runde wird gesartet
 		 */
 		$scope.start = function () {
 			$scope.config = Game.berechneSpiel($scope.config);
@@ -63,7 +65,7 @@ pokerControllers.controller('BlindsCtrl',
 		};
 
 		/**
-		 * Klick auf 'stop' entfernt 'game' aus config und beendet ServerRimer
+		 * Klick auf 'stop' entfernt 'game' aus config und beendet ServerTimer
 		 */
 		$scope.stop = function () {
 			$scope.config = Game.beendeSpiel($scope.config);

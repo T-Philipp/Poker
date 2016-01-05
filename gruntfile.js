@@ -17,18 +17,19 @@ module.exports = function (grunt) {
 		concat: {
 			js: {
 				src: [
-					'js/jquery*.js',
+					'js/jquery.min.js',
 					'js/ng/angular.js',
 					'js/ng/angular-*.js',
-					'js/bootstrap.min.js',
+					'js/ng/i18n/angular-locale_de-de.js',
 					'js/angular.rangeSlider.js',
+					'js/angular-timer.js',
 					'js/poker/*.js'
 				],
 				dest: 'dst/script.js'
 			},
 			css: {
 				src: [
-					'css/bootstrap.min.css',
+					'css/normalize.css',
 					'css/angular.rangeSlider.css',
 					'css/style.css'
 				],

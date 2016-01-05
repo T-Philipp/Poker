@@ -5,7 +5,8 @@ var app = angular.module('poker', [
 	'ngAnimate',
 	'pokerControllers',
 	'pokerServices',
-	'ui-rangeSlider'
+	'ui-rangeSlider',
+	'timer'
 ]);
 
 app.config(['$routeProvider',

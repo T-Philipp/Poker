@@ -22,7 +22,7 @@
 </div>
 
 <div id="game" ng-show="config.game">
+	<timer interval="1000" language="de" countdown="1" autostart="false" id="timer">{{minuteUnit}}</timer>
+
 	<button ng-click="stop()">Stop</button>
 </div>
-
-<h1>{{ restzeit }}</h1>
