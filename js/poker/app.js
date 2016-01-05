@@ -13,11 +13,13 @@ app.config(['$routeProvider',
 		$routeProvider
 			.when('/hands', {
 				templateUrl: 'tpl/hands.html',
-				controller: 'HandsCtrl'
+				controller: 'HandsCtrl',
+				name: 'hands'
 			})
 			.when('/blinds', {
 				templateUrl: 'tpl/blinds.html',
-				controller: 'BlindsCtrl'
+				controller: 'BlindsCtrl',
+				name: 'blinds'
 			})
 			.otherwise({
 				redirectTo: '/hands'

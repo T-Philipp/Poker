@@ -4,8 +4,6 @@
   "description": "demo",
   "author": "pfilop",
   "dependencies": {
-	"grunt": "*",
-	"grunt-cli": "*",
 	"connect": "*",
 	"serve-static": "*",
 	"forever": "*",

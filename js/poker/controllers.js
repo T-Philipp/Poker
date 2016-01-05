@@ -1,7 +1,15 @@
 var pokerControllers = angular.module('pokerControllers', []);
 
+pokerControllers.controller('HandsCtrl',
+	function ($scope, $route) {
+		$scope.$parent.page = $route.current.$$route.name;
+	}
+);
+
 pokerControllers.controller('BlindsCtrl',
-	function ($scope, $http, Socket) {
+	function ($scope, $http, $route, Socket) {
+		$scope.$parent.page = $route.current.$$route.name;
+
 		var configFile = 'config.json';
 
 		/**
