@@ -5,11 +5,13 @@ var connect = require('connect'), // http-Server
 	serveStatic = require('serve-static'), // http-Server kann statische html-file senden
 	socket = require('socket.io'), // webSocket
 	fs = require('fs'), // Zum Beschreiben einer Textdatei
+	isWin = /^win/.test(process.platform),
+	port = (isWin)? 80 : 8989,
 	app = connect(),
 	server = app
 		.use(bodyParser.json())
 		.use(serveStatic('./'))
-		.listen(80),
+		.listen(port),
 	io = socket.listen(server),
 	serverTimer,
 	timeLeft = 0,
@@ -18,7 +20,8 @@ var connect = require('connect'), // http-Server
 
 app
 	.use('/config', function(req, res) {
-		var filePath = __dirname + '\\..\\' + req.body.filename;
+		var oneBack = (isWin)? '\\..\\': '/../',
+			filePath = __dirname + oneBack + req.body.filename;
 
 		fs.writeFile(filePath, JSON.stringify(req.body.data), function (err) {
 			if (err) throw err;
