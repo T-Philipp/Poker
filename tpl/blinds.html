@@ -1,6 +1,6 @@
-<div id="config">
 
-	<label for="dauer">Blidstufen-Dauer (min)</label>
+<div id="config" ng-show="!config.game">
+	<label for="dauer">Blindstufen-Dauer</label>
 	<input id="dauer" type="text" ng-model="config.dauer">
 	<div range-slider min="dauer.min" max="dauer.max" step="{{ dauer.step }}" model-max="config.dauer" pin-handle="min"></div>
 
@@ -12,12 +12,17 @@
 
 	<br>
 
-	<label for="multip">Erhöhungs-Multiplikator (%)</label>
+	<label for="multip">Erhöhungs-Multiplikator</label>
 	<input id="multip" type="text" ng-model="config.multip">
 	<div range-slider min="multip.min" max="multip.max" step="{{ multip.step }}" model-max="config.multip" pin-handle="min"></div>
 
 	<br>
 
-	<button ng-click="save()">Starten</button>
-
+	<button ng-click="start()">Starten</button>
 </div>
+
+<div id="game" ng-show="config.game">
+	<button ng-click="stop()">Stop</button>
+</div>
+
+<h1>{{ restzeit }}</h1>

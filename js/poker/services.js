@@ -34,4 +34,44 @@ pokerServices
 			}
 		};
 	})
+
+	.factory('Game', function (Socket) {
+		return {
+			startServerTimer: function (dauer) {
+				Socket.emit('startTimer', dauer);
+			},
+			stopServerTimer: function () {
+				Socket.emit('stopTimer');
+			},
+			berechneSpiel: function (config) {
+				var jetzt = new Date(),
+					calcRunden = 20,
+					zaehler,
+					runden = [],
+					letzterSmallBlind = config.kleinste,
+					multip = config.multip / 10;
+
+				for (zaehler = 1; zaehler <= calcRunden; zaehler++) {
+					letzterSmallBlind = config.kleinste * Math.round(zaehler * multip);
+					var runde = {
+						runde: zaehler,
+						smallBlind: letzterSmallBlind,
+						bigBlind: letzterSmallBlind * 2
+					};
+					runden.push(runde);
+				}
+
+				config.game = {
+					started: jetzt,
+					aktRunde: 1,
+					runden: runden
+				};
+				return config;
+			},
+			beendeSpiel: function (config) {
+				delete config.game;
+				return config;
+			}
+		};
+	})
 ;

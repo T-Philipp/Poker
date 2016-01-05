@@ -1,4 +1,5 @@
-//define a global application
+'use strict';
+
 var app = angular.module('poker', [
 	'ngRoute',
 	'ngAnimate',
@@ -7,9 +8,8 @@ var app = angular.module('poker', [
 	'ui-rangeSlider'
 ]);
 
-//create an app router for url management and redirect
 app.config(['$routeProvider',
-	function($routeProvider) {
+	function ($routeProvider) {
 		$routeProvider
 			.when('/hands', {
 				templateUrl: 'tpl/hands.html',

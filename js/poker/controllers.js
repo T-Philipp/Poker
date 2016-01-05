@@ -1,3 +1,5 @@
+'use strict';
+
 var pokerControllers = angular.module('pokerControllers', []);
 
 pokerControllers.controller('HandsCtrl',
@@ -7,7 +9,7 @@ pokerControllers.controller('HandsCtrl',
 );
 
 pokerControllers.controller('BlindsCtrl',
-	function ($scope, $http, $route, Socket) {
+	function ($scope, $http, $route, Socket, Game) {
 		$scope.$parent.page = $route.current.$$route.name;
 
 		var configFile = 'config.json';
@@ -15,17 +17,37 @@ pokerControllers.controller('BlindsCtrl',
 		/**
 		 * Hole JSON und binde sie an $scope
 		 */
-		var getJson = function() {
+		var getConfigJson = function () {
 			$http.get(configFile).success(function (data) {
 				$scope.config = data;
 			});
 		};
 
 		/**
+		 * Sendet an den Server via POST mit URL/Name '/config' config-JSON gesendet
+		 * Dieser Speichert den Wert in die JSON mit 'fs'
+		 * Anschließend wird dem Server gesagt, er soll alle Clients updaten - durch senden an Socket
+		 */
+		var setConfigJson = function () {
+			$http.post('/config', {filename: configFile, data: $scope.config}).then(function () {
+				Socket.emit('configUpdated');
+			});
+		};
+
+		/**
+		 * Server schickt Restzeit in s bei laufendem Timer
+		 */
+		var getRundenrest = function () {
+			$http.get('/timer').success(function (data) {
+				$scope.restzeit = parseInt(data);
+			});
+		};
+
+		/**
 		 * Hole JSON, wenn vom ServerSocket ein 'configUpdated' kommt
 		 */
-		Socket.on('configUpdated', function() {
-			getJson();
+		Socket.on('configUpdated', function () {
+			getConfigJson();
 		});
 
 		/**
@@ -33,11 +55,28 @@ pokerControllers.controller('BlindsCtrl',
 		 * Dieser Speichert den Wert in die JSON mit 'fs'
 		 * Anschließend wird dem Server gesagt, er soll alle Clients updaten - durch senden an Socket
 		 */
-		$scope.save = function() {
-			$http.post('/config', {filename: configFile, data: $scope.config}).then(function() {
-				Socket.emit('configUpdated');
-			});
+		$scope.start = function () {
+			$scope.config = Game.berechneSpiel($scope.config);
+			setConfigJson();
+			Game.startServerTimer($scope.config.dauer);
+			getRundenrest();
 		};
+
+		/**
+		 * Klick auf 'stop' entfernt 'game' aus config und beendet ServerRimer
+		 */
+		$scope.stop = function () {
+			$scope.config = Game.beendeSpiel($scope.config);
+			setConfigJson();
+			Game.stopServerTimer();
+		};
+
+		/**
+		 * Aktueller Timer durchgelaufen
+		 */
+		Socket.on('timerDurch', function () {
+			console.log('durch nach ' + $scope.config.dauer + ' s!');
+		});
 
 		/**
 		 * Werte für Config-Slider setzen
@@ -53,25 +92,15 @@ pokerControllers.controller('BlindsCtrl',
 			step: 5
 		};
 		$scope.multip = {
-			min: 50,
-			max: 200,
-			step: 25
+			min: 10,
+			max: 30,
+			step: 1
 		};
 
-		/**
-		 * Initiles Holen der JSON
-		 */
-		getJson();
+		// Initiales Holen der JSON
+		getConfigJson();
 
-		/**
-		 * Sofortiges Änderungs-Broadcasting bei Sliden
-		 * Sehr Buggy :-)
-		 window.setTimeout(function() {
-			$scope.$watch('config', function() {
-				$scope.save();
-			}, true);
-		}, 1);
-		 */
-
+		// Initiales Holen der Restzeit
+		getRundenrest();
 	}
 );
