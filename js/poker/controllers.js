@@ -43,6 +43,10 @@ pokerControllers.controller('BlindsCtrl',
 
 				$scope.$broadcast('timer-set-countdown', $scope.restzeit);
 				$scope.$broadcast('timer-start');
+
+				if($scope.restzeit === 0) {
+					$scope.darfWeiter = true;
+				}
 			});
 		};
 
@@ -73,16 +77,30 @@ pokerControllers.controller('BlindsCtrl',
 		};
 
 		/**
-		 * Aktueller Timer durchgelaufen
+		 * Klick auf 'next' startet nächste Runde
 		 */
-		Socket.on('timerDurch', function () {
-			console.log('durch nach ' + $scope.config.dauer + ' s!');
-		});
+		$scope.next = function () {
+			if($scope.darfWeiter) {
+				$scope.config = Game.naechsteRunde($scope.config);
+				setConfigJson();
+				Game.startServerTimer($scope.config.dauer);
+			}
+		};
+
 		/**
 		 * Aktueller Timer durchgelaufen
 		 */
+		Socket.on('timerDurch', function () {
+			$scope.darfWeiter = true;
+			console.log('durch nach ' + $scope.config.dauer + ' s!');
+		});
+
+		/**
+		 * Server-Timer ging los
+		 */
 		Socket.on('timerGestartet', function () {
 			getRundenrest();
+			$scope.darfWeiter = false;
 		});
 
 		/**

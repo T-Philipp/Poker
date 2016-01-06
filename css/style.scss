@@ -29,6 +29,10 @@
 @import "animate";
 @import "ngAnim";
 
+.cursor {
+  cursor: pointer;
+}
+
 body {
   margin: 0 0 100px 0;
   background-image: url('../img/bg.jpg');

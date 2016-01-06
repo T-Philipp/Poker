@@ -71,6 +71,10 @@ pokerServices
 			beendeSpiel: function (config) {
 				delete config.game;
 				return config;
+			},
+			naechsteRunde: function (config) {
+				config.game.aktRunde+= 1;
+				return config;
 			}
 		};
 	})

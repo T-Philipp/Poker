@@ -46,26 +46,38 @@ io.sockets.on('connection', function(socket) {
 	 * Startet Game Server-Timer - broadcaste an alle nach Ablauf
 	 */
 	socket.on('startTimer', function(dauer) {
-		io.sockets.emit('timerGestartet');
-		serverTimer = setTimeout(function() {
-			io.sockets.emit('timerDurch');
-		}, dauer * 1000);
-		timeLeft = dauer;
-		timeLeftInterval = setInterval(function() {
-			if(timeLeft > 0) {
-				timeLeft -= 1;
-			}
-		}, 1000)
+		if(timeLeft === 0) {
+			// sende, dass der timer gestartet wurde
+			io.sockets.emit('timerGestartet');
+
+			// starte timer
+			serverTimer = setTimeout(function() {
+				stoppeTimer();
+				io.sockets.emit('timerDurch');
+			}, dauer * 1000);
+
+			// setze internen zähler für "request /timer - ausgabe"
+			timeLeft = dauer;
+			timeLeftInterval = setInterval(function() {
+				if(timeLeft > 0) {
+					timeLeft -= 1;
+				}
+			}, 1000)
+		}
 	});
 
 	/**
 	 * Stoppt Timer
 	 */
-	socket.on('stopTimer', function() {
+	function stoppeTimer() {
 		clearTimeout(serverTimer);
 		serverTimer = false;
 		clearInterval(timeLeftInterval);
+		timeLeftInterval = false;
 		timeLeft = 0;
+	}
+	socket.on('stopTimer', function() {
+		stoppeTimer()
 	});
 });
 
