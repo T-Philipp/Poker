@@ -149,6 +149,11 @@ nav {
 }
 
 #game {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+
   aside.nav {
 	position: fixed;
 	top: 0;
@@ -172,6 +177,9 @@ nav {
 	}
   }
   section {
+	align-self: center;
+	width: 100%;
+	margin: 0 30px;
 	article {
 	  display: flex;
 	  @include transp-bg;
@@ -179,11 +187,36 @@ nav {
 	  color: #fff;
 	  aside {
 		flex-grow: 1;
+		width: 30%;
 		text-align: center;
 	  }
 	  &.act {
 		align-self: stretch;
 	  }
+
+	  &:nth-child(1) {
+		display: none;
+	  }
+	  &:nth-child(2) {
+		font-size: 2em;
+		transform: rotateY(40deg);
+	  }
+	  &:nth-child(3) {
+		font-size: 2.5em;
+		transform: rotateY(20deg);
+	  }
+	  &:nth-child(4) {
+		font-size: 3em;
+	  }
+	  &:nth-child(5) {
+		font-size: 2.5em;
+		transform: rotateY(20deg);
+	  }
+	  &:nth-child(6) {
+		font-size: 2em;
+		transform: rotateY(40deg);
+	  }
+
 	}
   }
 }

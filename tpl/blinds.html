@@ -30,13 +30,18 @@
 		</div>
 	</aside>
 	<section>
+		<article>
+			<aside>Runde</aside>
+			<aside>SmallBlind</aside>
+			<aside>BigBlind</aside>
+		</article>
 		<article
 				ng-repeat="runde in config.game.runden"
 				ng-class="{act: runde.runde==config.game.aktRunde }"
-				ng-show="runde.runde<=config.game.aktRunde + 2 && runde.runde>=config.game.aktRunde - 2">
-			<aside>Runde: {{ runde.runde }}</aside>
-			<aside>SmallBlind: {{ runde.smallBlind }}</aside>
-			<aside>BigBlind: {{ runde.bigBlind }}</aside>
+				ng-if="runde.runde<=config.game.aktRunde + 2 && runde.runde>=config.game.aktRunde - 2">
+			<aside>{{ runde.runde }}</aside>
+			<aside>{{ runde.smallBlind }}</aside>
+			<aside>{{ runde.bigBlind }}</aside>
 		</article>
 	</section>
 </div>
