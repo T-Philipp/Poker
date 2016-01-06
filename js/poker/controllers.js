@@ -61,7 +61,6 @@ pokerControllers.controller('BlindsCtrl',
 			$scope.config = Game.berechneSpiel($scope.config);
 			setConfigJson();
 			Game.startServerTimer($scope.config.dauer);
-			getRundenrest();
 		};
 
 		/**
@@ -78,6 +77,12 @@ pokerControllers.controller('BlindsCtrl',
 		 */
 		Socket.on('timerDurch', function () {
 			console.log('durch nach ' + $scope.config.dauer + ' s!');
+		});
+		/**
+		 * Aktueller Timer durchgelaufen
+		 */
+		Socket.on('timerGestartet', function () {
+			getRundenrest();
 		});
 
 		/**

@@ -46,6 +46,7 @@ io.sockets.on('connection', function(socket) {
 	 * Startet Game Server-Timer - broadcaste an alle nach Ablauf
 	 */
 	socket.on('startTimer', function(dauer) {
+		io.sockets.emit('timerGestartet');
 		serverTimer = setTimeout(function() {
 			io.sockets.emit('timerDurch');
 		}, dauer * 1000);

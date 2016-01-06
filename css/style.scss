@@ -146,5 +146,44 @@ nav {
 	border: 0;
 	font-size: 1.5em;
   }
+}
 
+#game {
+  aside.nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	display: flex;
+	color: #fff;
+	> div {
+	  flex-grow: 1;
+	  padding: 10px;
+	  text-align: center;
+	  &.timer {
+		@include transp-bg;
+		@include shadow;
+	  }
+	  &.butn {
+		cursor: pointer;
+		@include transp-bg_btn;
+		@include shadow_btn;
+	  }
+	}
+  }
+  section {
+	article {
+	  display: flex;
+	  @include transp-bg;
+	  @include shadow;
+	  color: #fff;
+	  aside {
+		flex-grow: 1;
+		text-align: center;
+	  }
+	  &.act {
+		align-self: stretch;
+	  }
+	}
+  }
 }

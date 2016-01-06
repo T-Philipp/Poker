@@ -1,4 +1,3 @@
-
 <div id="config" ng-show="!config.game">
 	<label for="dauer">Blindstufen-Dauer</label>
 	<input id="dauer" type="text" ng-model="config.dauer">
@@ -22,7 +21,22 @@
 </div>
 
 <div id="game" ng-show="config.game">
-	<timer interval="1000" language="de" countdown="1" autostart="false" id="timer">{{minuteUnit}}</timer>
-
-	<button ng-click="stop()">Stop</button>
+	<aside class="nav">
+		<div class="timer">
+			<timer interval="1000" language="de" countdown="1" autostart="false" id="timer">{{minuteUnit}}</timer>
+		</div>
+		<div ng-click="stop()" class="butn">
+			Spiel beenden
+		</div>
+	</aside>
+	<section>
+		<article
+				ng-repeat="runde in config.game.runden"
+				ng-class="{act: runde.runde==config.game.aktRunde }"
+				ng-show="runde.runde<=config.game.aktRunde + 2 && runde.runde>=config.game.aktRunde - 2">
+			<aside>Runde: {{ runde.runde }}</aside>
+			<aside>SmallBlind: {{ runde.smallBlind }}</aside>
+			<aside>BigBlind: {{ runde.bigBlind }}</aside>
+		</article>
+	</section>
 </div>

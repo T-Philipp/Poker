@@ -2334,3 +2334,45 @@ nav {
       color: #000; }
     #config button:hover {
       box-shadow: 0 0 20px 0 black; }
+
+#game aside.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  color: #fff; }
+  #game aside.nav > div {
+    flex-grow: 1;
+    padding: 10px;
+    text-align: center; }
+    #game aside.nav > div.timer {
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 10px 0 black; }
+      #game aside.nav > div.timer.act {
+        background: rgba(255, 255, 255, 0.2); }
+    #game aside.nav > div.butn {
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.1);
+      transition: all .5s;
+      box-shadow: 0 0 10px 0 black;
+      transition: all .5s; }
+      #game aside.nav > div.butn.act {
+        background: rgba(255, 255, 255, 0.2); }
+      #game aside.nav > div.butn:hover {
+        background: rgba(255, 255, 255, 0.4);
+        color: #000; }
+      #game aside.nav > div.butn:hover {
+        box-shadow: 0 0 20px 0 black; }
+#game section article {
+  display: flex;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 10px 0 black;
+  color: #fff; }
+  #game section article.act {
+    background: rgba(255, 255, 255, 0.2); }
+  #game section article aside {
+    flex-grow: 1;
+    text-align: center; }
+  #game section article.act {
+    align-self: stretch; }
