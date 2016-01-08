@@ -3,13 +3,18 @@
 * npm update -g
 * npm install socket.io -g
 * npm install forever -g
+
+# Initiales Holen
+* git clone https://github.com/Pfilop/Poker.git
+* cd Poker
 * npm install
 
-# Starten
-* node srv/server.js
+# Server starten
+* forever start srv/server.js
+* http://HOST:8989
 
-# Bei Änderungen
-* forever --watch srv/server.js
-* grunt watch
-* /dst/*.min.* -> /dst/*.*
-* grunt pack
+# Neue Version ziehen
+* forever stopall
+* git checkout config.json
+* git pull
+* forever start srv/server.js
