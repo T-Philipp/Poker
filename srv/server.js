@@ -47,6 +47,8 @@ io.sockets.on('connection', function(socket) {
 	 */
 	socket.on('startTimer', function(dauer) {
 		if(timeLeft === 0) {
+			dauer*= 60;
+
 			// sende, dass der timer gestartet wurde
 			io.sockets.emit('timerGestartet');
 

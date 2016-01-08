@@ -4,7 +4,9 @@
 	<meta charset="utf-8">
 	<meta name="author" content="Philipp Tavra">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 	<title>Poker</title>
+	<!--
 	<script src="js/jquery.min.js"></script>
 	<script src="js/ng/angular.js"></script>
 	<script src="js/ng/angular-animate.min.js"></script>
@@ -19,16 +21,20 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/angular.rangeSlider.css">
 	<link rel="stylesheet" href="css/style.css">
+	-->
+	<script src="dst/script.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<link rel="stylesheet" href="dst/style.min.css">
 </head>
 <body>
 
-<div ng-view class="dpageani"></div>
+<div ng-view></div>
 
 <nav>
 	<a href="#/hands"><div ng-class="{act: page=='hands'}">
 		<h4>Kartenwertungen</h4>
 	</div></a>
-	<a href="#/blinds"><div ng-class="{act: page=='blinds'}">
+	<a href="#/blinds"><div ng-class="{act: page=='blinds', pulsing: (darfWeiter && page=='hands')}">
 		<h4>Blind-Watcher</h4></div>
 	</a>
 </nav>

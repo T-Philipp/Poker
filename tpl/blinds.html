@@ -44,4 +44,7 @@
 			<aside>{{ runde.bigBlind }}</aside>
 		</article>
 	</section>
+	<div id="pulse" ng-show="darfWeiter" ng-click="next()" ng-class="{cursor: darfWeiter}">
+		<div>Runde beendet</div>
+	</div>
 </div>

@@ -34065,13 +34065,19 @@ app.config(['$routeProvider',
 var pokerControllers = angular.module('pokerControllers', []);
 
 pokerControllers.controller('HandsCtrl',
-	function ($scope, $route) {
+	function ($scope, $rootScope, $http, $route) {
 		$scope.$parent.page = $route.current.$$route.name;
+
+		$http.get('/timer').success(function (data) {
+			if(parseInt(data) === 0) {
+				$rootScope.darfWeiter = true;
+			}
+		});
 	}
 );
 
 pokerControllers.controller('BlindsCtrl',
-	function ($scope, $http, $route, Socket, Game) {
+	function ($scope, $rootScope, $http, $route, Socket, Game) {
 		$scope.$parent.page = $route.current.$$route.name;
 
 		var configFile = 'config.json';
@@ -34107,7 +34113,7 @@ pokerControllers.controller('BlindsCtrl',
 				$scope.$broadcast('timer-start');
 
 				if($scope.restzeit === 0) {
-					$scope.darfWeiter = true;
+					$rootScope.darfWeiter = true;
 				}
 			});
 		};
@@ -34142,7 +34148,7 @@ pokerControllers.controller('BlindsCtrl',
 		 * Klick auf 'next' startet nächste Runde
 		 */
 		$scope.next = function () {
-			if($scope.darfWeiter) {
+			if($rootScope.darfWeiter) {
 				$scope.config = Game.naechsteRunde($scope.config);
 				setConfigJson();
 				Game.startServerTimer($scope.config.dauer);
@@ -34153,7 +34159,7 @@ pokerControllers.controller('BlindsCtrl',
 		 * Aktueller Timer durchgelaufen
 		 */
 		Socket.on('timerDurch', function () {
-			$scope.darfWeiter = true;
+			$rootScope.darfWeiter = true;
 			console.log('durch nach ' + $scope.config.dauer + ' s!');
 		});
 
@@ -34162,7 +34168,7 @@ pokerControllers.controller('BlindsCtrl',
 		 */
 		Socket.on('timerGestartet', function () {
 			getRundenrest();
-			$scope.darfWeiter = false;
+			$rootScope.darfWeiter = false;
 		});
 
 		/**

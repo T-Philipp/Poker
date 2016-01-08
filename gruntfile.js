@@ -29,7 +29,7 @@ module.exports = function (grunt) {
 			},
 			css: {
 				src: [
-					'css/normalize.css',
+					'css/bootstrap.min.css',
 					'css/angular.rangeSlider.css',
 					'css/style.css'
 				],

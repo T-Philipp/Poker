@@ -2262,9 +2262,23 @@ nav {
         color: #000; }
       nav a div:hover {
         box-shadow: 0 0 20px 0 black; }
+      nav a div.pulsing {
+        animation: pulsenav 2s infinite alternate;
+        -webkit-transform: translate3d(0, 0, 0);
+        -webkit-backface-visibility: hidden;
+        -webkit-perspective: 1000; }
       nav a div h4 {
         margin-bottom: 0; }
 
+@keyframes pulsenav {
+  0% {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px 0 black;
+    color: #fff; }
+  50% {
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 200px 0 rgba(255, 255, 255, 0.5);
+    color: #000; } }
 #hands {
   margin: 20px;
   display: flex;
@@ -2405,3 +2419,33 @@ nav {
       #game section article:nth-child(6) {
         font-size: 2em;
         transform: rotateY(40deg); }
+  #game #pulse {
+    font-size: 0;
+    color: white;
+    animation: pulsetxt 2s infinite alternate;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 150px);
+    margin: 75px 0;
+    -webkit-transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000; }
+    #game #pulse div {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      transform: translate(0, -50%); }
+
+@keyframes pulsetxt {
+  0% {
+    color: white;
+    font-size: 0;
+    text-shadow: 0 0 0 #fff; }
+  50% {
+    color: black;
+    font-size: 7em;
+    text-shadow: 0 0 20px #fff; } }

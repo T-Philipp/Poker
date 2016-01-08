@@ -58,7 +58,7 @@ nav {
   width: 100%;
   display: flex;
   color: #fff;
-  text-shadow: 0 0 5px rgba(0,0,0,1);
+  text-shadow: 0 0 5px rgba(0, 0, 0, 1);
   a {
 	flex-grow: 1;
 	&:link, &:visited {
@@ -71,10 +71,29 @@ nav {
 	  padding: 20px 0;
 	  text-align: center;
 	  cursor: pointer;
+	  &.pulsing {
+		animation: pulsenav 2s infinite alternate;
+		-webkit-transform: translate3d(0,0,0);
+		-webkit-backface-visibility: hidden;
+		-webkit-perspective: 1000;
+	  }
 	  h4 {
 		margin-bottom: 0;
 	  }
 	}
+  }
+}
+
+@keyframes pulsenav {
+  0% {
+	background: rgba(255, 255, 255, 0.1);
+	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 1);
+	color: #fff;
+  }
+  50% {
+	background: rgba(255, 255, 255, 0.4);
+	box-shadow: 0 0 200px 0 rgba(255, 255, 255, .5);
+	color: #000;
   }
 }
 
@@ -222,5 +241,40 @@ nav {
 	  }
 
 	}
+  }
+  #pulse {
+	font-size: 0;
+	color: white;
+	animation: pulsetxt 2s infinite alternate;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: calc(100% - 150px);
+	margin: 75px 0;
+	-webkit-transform: translate3d(0,0,0);
+	-webkit-backface-visibility: hidden;
+	-webkit-perspective: 1000;
+	div {
+	  position: absolute;
+	  top: 50%;
+	  left: 0;
+	  width: 100%;
+	  text-align: center;
+	  transform: translate(0, -50%);
+	}
+  }
+}
+
+@keyframes pulsetxt {
+  0% {
+	color: white;
+	font-size: 0;
+	text-shadow: 0 0 0 #fff;
+  }
+  50% {
+	color: black;
+	font-size: 7em;
+	text-shadow: 0 0 20px #fff;
   }
 }
